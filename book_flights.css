@@ -1,0 +1,351 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+* {
+    text-decoration: none;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", sans-serif;
+    transition: all .2s linear;
+}
+
+
+
+html {
+  background-color: whitesmoke;
+  font-size: 20px;
+}
+
+
+@font-face {
+    font-family: 'cassandra';
+    src: url('CassandraPersonalUseRegular-3BjG.ttf');
+}
+
+
+/* Header */
+header{
+  height: 6rem;
+  position: fixed;
+  top:0; left: 0; right:0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background: rgb(59,103,158); /* Old browsers */
+  background: -moz-linear-gradient(top, rgba(59,103,158,1) 0%, rgba(43,136,217,1) 50%, rgba(32,124,202,1) 51%, rgba(125,185,232,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(59,103,158,1) 0%,rgba(43,136,217,1) 50%,rgba(32,124,202,1) 51%,rgba(125,185,232,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3b679e', endColorstr='#7db9e8',GradientType=0 );
+
+}
+
+#logo {
+  font-size: 3rem;
+  font-weight: bolder;
+  font-family: 'cassandra';
+  position: relative;
+  margin: 2rem 0 0 1rem;
+  background: rgb(157,213,58); 
+  background: -moz-linear-gradient(top,  rgba(157,213,58,1) 0%, rgba(161,213,79,1) 50%, rgba(128,194,23,1) 51%, rgba(124,188,10,1) 100%);
+  background: -webkit-linear-gradient(top,  rgba(157,213,58,1) 0%,rgba(161,213,79,1) 50%,rgba(128,194,23,1) 51%,rgba(124,188,10,1) 100%);
+  background: linear-gradient(to bottom,  rgba(157,213,58,1) 0%,rgba(161,213,79,1) 50%,rgba(128,194,23,1) 51%,rgba(124,188,10,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9dd53a', endColorstr='#7cbc0a',GradientType=0 );
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+    
+    
+}
+
+header #navbar {
+  position: relative;
+  display: flex;
+}
+
+#navbar a{
+  color:#000;
+  text-decoration: none;
+  width: 15rem;
+  font-weight: 600;
+  letter-spacing: 0.1rem;
+  font-size: 2.5rem;
+  position: relative;
+  padding: 0;
+  line-height: 6rem;
+  text-align: center;
+}
+
+
+
+
+
+#navbar a:hover {
+  color: whitesmoke;
+  transition: 0.3s;
+}
+
+#navbar .navBook::before {
+  content: "";
+  position: absolute;
+  border-left: 4px solid #333;
+  left: 0;
+  height: 4rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#navbar .navBlog::before {
+  content: "";
+  position: absolute;
+  border-left: 4px solid #333;
+  left: 0;
+  height: 4rem;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#navbar a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  bottom: 0;
+  transition: 0.4s;
+}
+
+#navbar a:hover::after {
+  width: 50%;
+  background-color: whitesmoke;
+}
+
+
+header #navbar a::after {
+  background: whitesmoked;
+  width: 100%;
+  height: 5px;
+}
+
+
+
+header .search {
+  font-size: 2.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+
+}
+header .search input {
+  font-size: 2rem;
+  margin: 0.5rem;
+  border: 3px solid #000;
+  border-radius: 15px;
+  width: 20vw;
+}
+
+.fas {
+  font-size: 2.5rem;
+  color: #000;
+  cursor: pointer;
+  margin-right: 4rem;
+}
+  
+.fas:hover{
+  color: #999;
+}
+
+.searchAndLogin {
+  display: flex;
+  align-items: center;
+}
+@media (max-width: 767.98px) {
+  html {
+      font-size: 8px!important;
+      font-weight: none!important;
+  }
+  #logo {
+    font-size: 2rem;
+  }
+  #navbar a {
+    width: 8rem;
+    margin: auto;
+    padding: auto;
+  }
+  #navbar a::before {
+    display: none;
+    margin: 0;
+    padding: 0;
+  }
+  #navbar a::after {
+    display: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+}
+
+* {box-sizing:border-box}
+
+/* Slideshow container */
+.slideshow-container {
+    width: 100%;
+    height: auto;
+    position: relative;
+  margin: auto;
+}
+
+.slides{
+    width: 100%;
+    height: 25rem;
+}
+
+/* Next & previous buttons */
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    margin-top: -22px;
+    padding: 16px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+  }
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
+
+/* BOOKING CONTENT */
+#main-content{
+    position: relative;
+    height: 100rem;
+    width: auto;
+
+}
+#book-content{
+    position: absolute;
+    height: 35rem;
+    width: 40.5rem;
+    background-color: antiquewhite;
+
+}
+
+
+
+.flights-content{
+    position: absolute;
+    margin-left: 50rem;
+    top:0;
+    width:50rem;
+}
+
+#title-content{
+    background-color: rgb(202, 220, 221);
+    position: absolute;
+    width: 35rem;
+    margin-top:3rem;
+    margin-left:2.5rem;
+    text-align: center;
+    font-size:3rem;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight:bold;
+    color: rgb(5, 88, 122);
+}
+
+/* Flight */
+#Flight {
+    font-size: 1rem;
+    position: absolute;
+    width: 35rem;
+    height: 5rem;
+    margin: 0 auto;
+    color: #336c85;
+    margin-top: 8rem;
+    margin-left: 2rem;
+  }
+  
+  #Flight input {
+    font-size: 1rem;
+  }
+  
+  #Flight select {
+    font-size: 1rem;
+    height: 2rem;
+    margin-bottom: 75%;
+  }
+  
+  .checkbox-inline input{
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    transform: scale(2);
+    margin: 10px;
+    margin-left: 5rem;
+  }
+  
+  .oneWay {
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    transform: scale(2);
+    margin: 10px;
+  }
+  .roundTrip {
+    -ms-transform: scale(2); /* IE */
+    -moz-transform: scale(2); /* FF */
+    -webkit-transform: scale(2); /* Safari and Chrome */
+    -o-transform: scale(2); /* Opera */
+    transform: scale(2);
+    margin: 10px;
+  }
+  
+  #Flight .row {
+    display: flex;
+    flex-direction: row;
+    margin: 2em 0;
+  }
+  
+  #Flight .colume {
+    min-width: 2rem;
+    height:1.5rem;
+    margin: auto;
+  }
+  
+  .findBtn {
+    width: auto;
+    display: flex;
+    justify-content: center;
+    top: 50px;
+  }
+  
+  .Btn{
+    font-size:25px;
+  }
+  
