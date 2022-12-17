@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://www.fontspace.com/cassandra-font-f29711">
+    <!-- Tìm icon: https://fontawesome.com/icons/cloudflare?s=solid&f=brands -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+    <title>BACKPACKING TRAVEL WEBSITE</title>
+</head>
+<body>
+    <header>
+
+        <a  href="/home.html" id="logo">BackTravel</a>
+
+        <nav id="navbar">
+            <a href="/home.html" class="navHome">
+                Home
+            </a>
+            <a href="/book.html" class="navBook">
+                Book
+            </a>
+            <a href="/blog.html" class="navBlog">
+                Blog
+            </a>
+
+        </nav>
+        <div class="searchAndLogin">
+            <div class="search">
+                <input type="search" class="search-bar" placeholder="Tìm kiếm địa điểm">
+                <label for="search-bar" class="fas fa-search" onclick="Search(event)"></label>
+            </div>
+            <i class="fas fa-user" id="login-btn"></i>
+        </div>
+    </header>
+    <div class="container">
+        <div class="searchPlace">
+            <input type="search" class="search-bar" placeholder="Tìm kiếm địa điểm">
+            <button class="Btn" onclick="Search(event)">Tìm kiếm</button>
+        </div>
+        <div class="searchResult"></div>
+    </div>
+    
+
+    <script src="./script.js"></script>
+</body>
+</html>
