@@ -22,6 +22,10 @@ html {
     src: url('CassandraPersonalUseRegular-3BjG.ttf');
 }
 
+body {
+  /* overflow-y: hidden; Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
+}
 
 /* Header */
 header{
@@ -76,10 +80,6 @@ header #navbar {
   line-height: 6rem;
   text-align: center;
 }
-
-
-
-
 
 #navbar a:hover {
   color: whitesmoke;
@@ -241,40 +241,79 @@ header .search input {
 }
 
 /* BOOKING CONTENT */
-#main-content{
+#cover-book-content{
     position: relative;
-    height: 100rem;
-    width: auto;
-
+    height: 42rem;
+    width: 100%;
+    background-color: rgb(218, 238, 241);
 }
-#book-content{
+#find-content{
+    /* position: absolute; */
+    height: 25rem;
+    width: 40rem;
     position: absolute;
-    height: 35rem;
-    width: 40.5rem;
-    background-color: antiquewhite;
-
+  left: 5rem;
+  top:3rem;
+  border: 3px solid #000;
+  border-radius: 10px;
+  box-shadow: 10px 10px 5px black;
+  background: rgb(6, 59, 68); 
+  background: -moz-linear-gradient(top, rgb(5, 61, 71) 0%, rgba(158,232,250,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgb(56, 159, 177) 0%,rgba(158,232,250,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgb(7, 52, 60) 0%,rgba(158,232,250,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6f9ff', endColorstr='#9ee8fa',GradientType=0 ); /* IE6-9 */
 }
 
 
 
-.flights-content{
-    position: absolute;
-    margin-left: 50rem;
-    top:0;
-    width:50rem;
-}
+#find-title{
+  border-radius: 25px;
 
-#title-content{
-    background-color: rgb(202, 220, 221);
+    /* background-color: rgb(202, 220, 221); */
+    background: -moz-linear-gradient(top, rgba(214,249,255,1) 0%, rgba(158,232,250,1) 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(top, rgba(214,249,255,1) 0%,rgba(158,232,250,1) 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to bottom, rgb(14, 29, 58) 0%,rgb(69, 109, 55) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     position: absolute;
     width: 35rem;
     margin-top:3rem;
     margin-left:2.5rem;
     text-align: center;
     font-size:3rem;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-family:'monaco';
     font-weight:bold;
-    color: rgb(5, 88, 122);
+    color: rgb(235, 241, 244);
+}
+
+#book-content{
+  position: absolute;
+  height: 35rem;
+  width: 63rem;
+left: 45rem;
+border: 3px solid #000;
+border-radius: 10px;
+box-shadow: 10px 10px 5px black;
+background: rgb(214,249,255); 
+background: -moz-linear-gradient(top, rgba(214,249,255,1) 0%, rgba(158,232,250,1) 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(top, rgba(214,249,255,1) 0%,rgba(158,232,250,1) 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to bottom, rgb(145, 217, 230) 0%,rgba(158,232,250,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d6f9ff', endColorstr='#9ee8fa',GradientType=0 ); /* IE6-9 */
+}
+
+#book-title{
+  /* background-color: rgb(202, 220, 221); */
+  background: rgb(214,249,255); 
+  background: -moz-linear-gradient(top, rgba(214,249,255,1) 0%, rgba(158,232,250,1) 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, rgba(214,249,255,1) 0%,rgba(158,232,250,1) 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, rgba(214,249,255,1) 0%,rgba(158,232,250,1) 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  position: absolute;
+  width: 35rem;
+  margin-top:3rem;
+  margin-left:2.5rem;
+  text-align: center;
+  font-size:3rem;
+  font-family:'monaco';
+  font-weight:bold;
+  color: rgb(5, 88, 122);
 }
 
 /* Flight */
@@ -284,7 +323,18 @@ header .search input {
     width: 35rem;
     height: 5rem;
     margin: 0 auto;
-    color: #336c85;
+    color: #d8d8d8;
+    margin-top: 8rem;
+    margin-left: 2rem;
+  }
+
+  #Flight2 {
+    font-size: 1rem;
+    position: absolute;
+    width: 35rem;
+    height: 5rem;
+    margin: 0 auto;
+    color: #113f47;
     margin-top: 8rem;
     margin-left: 2rem;
   }
@@ -342,10 +392,88 @@ header .search input {
     width: auto;
     display: flex;
     justify-content: center;
-    top: 50px;
+    /* top: 60px; */
   }
   
-  .Btn{
+  .searchBtn{
     font-size:25px;
+    color:aliceblue;
+    font-weight: bold;
+    background-color: #12ba1a;
+
+  }
+
+
+  #flight-title{
+    position:absolute;
+    top:45rem;
+    left: 40rem;
+    font-size:3rem;
+    font-family: 'Courier New', Courier, monospace;
+    color:#336c85;
+  }
+
+  #flight-detail{
+  border-collapse: collapse;
+  position: absolute;
+  width:80rem;
+  height:auto;
+  left:17%;
+  top:50rem;
+
+  box-sizing:border-box;
+
+  }
+
+  #flight-detail tr{
+  box-shadow: 0 1px 10px #000000;
+  text-align: center;
+  width: 33%;
+  
   }
   
+  #name-column-table tr th{
+    background-color: #113f47;
+    color: aliceblue;
+    font-weight: bold;
+    font-size: 1.25rem;
+    padding:0.5rem 1.5rem;
+    border:2px solid #1a1b1c;
+
+  }
+
+  #data-flights td {
+    border:2px solid #000;
+    padding:0.5rem 1rem;
+  }
+
+  #data-flights button{
+    /* position: relative; */
+    font-size: larger;
+    border:2px solid #000;
+    top:50%;
+    transform: translateY(50%);
+    color:aliceblue;
+    background-color:#336c85 ;
+  }
+
+  #data-flights button:hover {
+    background: lightsalmon;
+    cursor: pointer;
+
+  }
+
+  #data-flights button:hover::after {
+    background: rgb(232, 213, 206);
+
+  }
+
+
+footer{
+  position: absolute;
+  top:-5rem;
+  height: 15rem;
+  width:100%;
+  margin-top: 5rem;
+  display: block;
+}

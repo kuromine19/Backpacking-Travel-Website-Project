@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,13 +9,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <link rel="stylesheet" href="book_flights.css">
     <title>BACKPACKING TRAVEL WEBSITE</title>
 </head>
+
 <body>
     <header>
-        <a  href="./home.html" id="logo">BackTravel</a>
+        <a href="./home.html" id="logo">BackTravel</a>
 
         <nav id="navbar">
             <a href="" class="navHome">
@@ -36,140 +39,175 @@
             <i class="fas fa-user" id="login-btn"></i>
         </div>
     </header>
-    
+
     <!-- Slideshow container -->
-<div class="slideshow-container">
+    <div class="slideshow-container">
 
-    <!-- Full-width images with number and caption text -->
-    <div class="mySlides fade">
-      <div class="numbertext">1 / 3</div>
-      <img class="slides" src="assets/images/slide4.jpg" style="width:100%">
-    </div>
-  
-    <div class="mySlides fade">
-      <div class="numbertext">2 / 3</div>
-      <img class="slides" src="assets/images/slide2.jpg" style="width:100%">
-    </div>
-  
-    <div class="mySlides fade">
-      <div class="numbertext">3 / 3</div>
-      <img class="slides" src="assets/images/slide3.jpg" style="width:100%">
-    </div>
-  
-    <!-- Next and previous buttons -->
-    <a class="prev" onclick="plusDivs(-1)">&#10094;</a>
-    <a class="next" onclick="plusDivs(1)">&#10095;</a>
-    <script>
-    var slideIndex = 1;
-    showDivs(slideIndex);
-
-    function plusDivs(n) {
-    showDivs(slideIndex += n);
-    }
-
-    function showDivs(n) {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    if (n > x.length) {slideIndex = 1}
-    if (n < 1) {slideIndex = x.length} ;
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-    }
-    x[slideIndex-1].style.display = "block";
-    }
-    var slideIndex = 0;
-    carousel();
-
-    function carousel() {
-    var i;
-    var x = document.getElementsByClassName("mySlides");
-    for (i = 0; i < x.length; i++) {
-        x[i].style.display = "none";
-    }
-    slideIndex++;
-    if (slideIndex > x.length) {slideIndex = 1}
-    x[slideIndex-1].style.display = "block";
-    setTimeout(carousel, 4000); // Change image every 2 seconds
-}
-    </script>
-</div>
-
-<div id="main-content">
-    <div id="book-content">
-        <h1 id="title-content">Đặt vé máy bay</h1>
-        <div id="Flight" class="tabcontent">
-
-            <div class="row">
-                <div class="colume">
-                    <input type="radio" class="oneWay" name="typeTicket" value="OneWay">
-                    <label for="oneWay">Một chiều</label>
-                    <input type="radio" class="roundTrip" name="typeTicket" value="RoundTrip">
-                    <label for="roundTrip">Khứ hồi</label>
-                </div>
-                
-                
-            </div>
-
-            <div class="row">
-                <div class="colume">
-                    <h5> Từ </h5>
-                    <input type="text" placeholder="Từ">
-                </div>
-                    
-                <div class="colume">
-                    <h5> Đến </h5>
-                    <input type="text" placeholder="Đến">
-                </div>
-                    
-
-            </div>
-            <div class="row">
-                <div class="colume">
-                    <h5> Ngày đi</h5>
-                    <input class="glyphicon glyphicon-calendar" type="date" placeholder="mm/dd/yyyy">
-                </div>
-                
-                <div class="colume">
-                    <h5> Ngày về </h5>
-                    <input class="glyphicon glyphicon-calendar" type="date" placeholder="mm/dd/yyyy">
-                </div>
-
-            </div>
-            <div class="row">
-                <div class="colume">
-                    <h5> Số người lớn </h5>
-                    <input type="number" name="points" min="0" max="100" step="10" value="1">
-                </div>
-                
-                <div class="colume">
-                    <h5> Số trẻ em </h5>
-                    <input type="number" name="points" min="0" max="100" step="10" value="0">
-                </div>
-
-                
-            </div>
-            <div class="row">
-                <div class="colume">
-                    <label for="sel1">Hạng ghế</label>
-                    <select class="form-control" id="sel1">
-                        <option>Hạng nhất</option>
-                        <option>Thương gia</option>
-                        <option>Phổ thông</option>
-                    </select>
-                    <label class="checkbox-inline"><input type="checkbox" value="">Bữa ăn</label>
-                    <label class="checkbox-inline"><input type="checkbox" value="">Wifi</label>
-                </div>
-
-                
-            </div>
-            <div class="row findBtn">
-                <button type="button" class="Btn">Tìm kiếm </button>
-            </div>
-            
-            
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides fade">
+            <div class="numbertext">1 / 3</div>
+            <img class="slides" src="assets/images/slide4.jpg" style="width:100%">
         </div>
-    
+
+        <div class="mySlides fade">
+            <div class="numbertext">2 / 3</div>
+            <img class="slides" src="assets/images/slide2.jpg" style="width:100%">
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">3 / 3</div>
+            <img class="slides" src="assets/images/slide3.jpg" style="width:100%">
+        </div>
+
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusDivs(-1)">&#10094;</a>
+        <a class="next" onclick="plusDivs(1)">&#10095;</a>
+
     </div>
-</div>
+
+    <div id="cover-book-content">
+        <div id="find-content">
+            <h1 id="find-title">Tìm vé máy bay</h1>
+            <div id="Flight" class="tabcontent">
+
+                <div class="row">
+                    <div class="colume">
+                        <input type="radio" class="oneWay" name="typeTicket" value="OneWay">
+                        <label for="oneWay">Một chiều</label>
+                        <input type="radio" class="roundTrip" name="typeTicket" value="RoundTrip">
+                        <label for="roundTrip">Khứ hồi</label>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="colume">
+                        <h5> Từ </h5>
+                        <input id="f_location_from" type="text" placeholder="Từ">
+                    </div>
+
+                    <div class="colume">
+                        <h5> Đến </h5>
+                        <input id="f_location_to" type="text" placeholder="Đến">
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="colume">
+                        <h5> Ngày đi</h5>
+                        <input id="f_date_from" class="glyphicon glyphicon-calendar" type="date"
+                            placeholder="mm/dd/yyyy">
+                    </div>
+
+                    <div class="colume">
+                        <h5> Ngày về </h5>
+                        <input id="f_date_to" class="glyphicon glyphicon-calendar" type="date" placeholder="mm/dd/yyyy">
+                    </div>
+
+                </div>
+                <!-- <div class="row">
+                    <div class="colume">
+                        <h5> Số người lớn </h5>
+                        <input type="number" name="points" min="0" max="20" step="1" value="1">
+                    </div>
+
+                    <div class="colume">
+                        <h5> Số trẻ em </h5>
+                        <input type="number" name="points" min="0" max="20" step="1" value="0">
+                    </div>
+
+
+                </div> -->
+
+                <div class="row findBtn">
+                    <button type="button" class="searchBtn">Tìm kiếm </button>
+                </div>
+
+
+            </div>
+            
+            <div id="book-content">
+                <h1 id="book-title">Thông tin đặt vé</h1>
+            <div id="Flight2" class="tabcontent">
+
+                <div class="row">
+                    <div class="colume">
+                        <input type="radio" class="oneWay" name="typeTicket" value="OneWay">
+                        <label for="oneWay">Một chiều</label>
+                        <input type="radio" class="roundTrip" name="typeTicket" value="RoundTrip">
+                        <label for="roundTrip">Khứ hồi</label>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="colume">
+                        <h5> Từ </h5>
+                        <input id="f_location_from" type="text" placeholder="Từ">
+                    </div>
+
+                    <div class="colume">
+                        <h5> Đến </h5>
+                        <input id="f_location_to" type="text" placeholder="Đến">
+                    </div>
+
+
+                </div>
+                <div class="row">
+                    <div class="colume">
+                        <h5> Ngày đi</h5>
+                        <input id="f_date_from" class="glyphicon glyphicon-calendar" type="date"
+                            placeholder="mm/dd/yyyy">
+                    </div>
+
+                    <div class="colume">
+                        <h5> Ngày về </h5>
+                        <input id="f_date_to" class="glyphicon glyphicon-calendar" type="date" placeholder="mm/dd/yyyy">
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="colume">
+                        <h5> Số người lớn </h5>
+                        <input type="number" name="points" min="0" max="20" step="1" value="1">
+                    </div>
+
+                    <div class="colume">
+                        <h5> Số trẻ em </h5>
+                        <input type="number" name="points" min="0" max="20" step="1" value="0">
+                    </div>
+
+
+                </div>
+
+                <div class="row findBtn">
+                    <button type="button" class="searchBtn">Tìm kiếm </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div id="flight-content">
+        <h1 id="flight-title">
+            Thông tin các chuyến bay
+        </h1>
+        <table id="flight-detail">
+            <thead id="name-column-table"></thead>
+            <tbody id="data-flights"></tbody>
+        </table>
+    </div>
+    <script src="./book_flights.js"></script>
+    <script type="module" src="./table.js"></script>
+    <script type="module" src="./config.js"></script>
+
+    </div>
+    
+    <footer></footer>
 </body>
+
+
 </html>
