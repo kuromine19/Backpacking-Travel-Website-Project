@@ -1,0 +1,28 @@
+#containter
+{
+    border: 2px solid #ccc;
+    border-radius: 15px;
+    width: 50%;
+    height: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+#containter .photo img
+{
+    margin: 20px 0;
+    width: 200px;
+    height: auto;
+}
+
+#containter .info .item label
+{
+    font-size: 1.2em;
+}
+
+#containter .info .item h5
+{
+    width: 60%;
+    margin: 10px auto;
+    border-bottom: 1px solid #ccc;
+}
