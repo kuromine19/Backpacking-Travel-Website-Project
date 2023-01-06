@@ -5,7 +5,7 @@ import { db } from '../firebaseConfig.js'
 const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': 'beffbf1d00msh3e0f900f3ebacabp19997ejsn878001c9fcfe',
+		'X-RapidAPI-Key': '7eb597ab48mshbc1ea92466277a5p13e795jsn964983eb7b12',
 		'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
 	}
 };
@@ -1239,7 +1239,7 @@ if (document.URL.includes('xem-dia-diem'))
                 {
                     db.collection('reviews').where('user_name','==',`${localStorage.getItem('user_email')}`).get().then((snapshot) => {
                         snapshot.docs.forEach(doc => {
-                            if (doc.data().user_name == localStorage.getItem('user_email'))
+                            if (doc.data().user_name == localStorage.getItem('user_email') && doc.data().location_id == place.location_id)
                             {
                                 var oldData = {
                                     user_avatar: doc.data().user_avatar,
@@ -1345,7 +1345,7 @@ if (document.URL.includes('xem-dia-diem'))
                         }
 
 
-                        db.collection('reviews').get().then((snapshot) => {
+                        db.collection('reviews').where('location_id', '==', `${place.location_id}`).get().then((snapshot) => {
                             var i = 0;
                             snapshot.docs.forEach(doc => {
                                 var check = false
@@ -1409,7 +1409,7 @@ if (document.URL.includes('xem-dia-diem'))
                             <span> để viết đánh giá!</span>
                         </h1>
                     </div>`
-                    db.collection('reviews').get().then((snapshot) => {
+                    db.collection('reviews').where('location_id', '==', `${place.location_id}`).get().then((snapshot) => {
                         var i = 0;
                         snapshot.docs.forEach(doc => {
                             document.querySelector('.reviews').innerHTML += 
