@@ -1400,7 +1400,7 @@ if (document.URL.includes('xem-dia-diem'))
                     })
     
                 }
-                else if (localStorage.getItem('isLogin') == 'false')
+                else
                 {
                     document.querySelector('.reviews').innerHTML += 
                     `<div class="writeReview" style="text-align: center;">
@@ -1467,10 +1467,12 @@ if (document.URL.includes('xem-dia-diem'))
         num_reviews: "",
         address: ""
     }
+    document.title = `Xem địa điểm`
     fetch(`https://travel-advisor.p.rapidapi.com/attractions/get-details?location_id=${place.location_id}&currency=VND&lang=vi`, options)
     .then(response => response.json())
     .then(response => {
         place.name = response.name
+        document.title = `Xem địa điểm: ${place.name}`
         if (response.rating == undefined)
             place.type = 'geos'
         if (response.rating != undefined)
