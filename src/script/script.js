@@ -68,6 +68,19 @@ function getStars(rating) {
 }
 
 
+window.Search = function Search(e) {
+        
+    if (e.target.className == "fas fa-search") {
+        var searchKey = document.querySelector(".searchAndLogin input");
+    }
+    if (e.target.className == "Btn") {
+        var searchKey = document.querySelector("#Place input");
+    }
+    localStorage.setItem("searchPlace", searchKey.value);
+    window.open('../page/ket-qua-tim-kiem.html')
+}
+
+
 window.showInfoPlace = function showInfoPlace(location_id)
 {
     localStorage.setItem('location_id', location_id)
@@ -166,6 +179,7 @@ if (document.URL.includes("index.html") || document.URL.includes("book_flights_i
 }
 
 
+
 //Các xử lý trong màn hình index(home)
 if (document.URL.includes("index.html"))
 {
@@ -181,19 +195,6 @@ if (document.URL.includes("index.html"))
         evt.currentTarget.classList.add("tabActive");
     }
 
-
-
-    window.Search = function Search(e) {
-        
-        if (e.target.className == "fas fa-search") {
-            var searchKey = document.querySelector(".searchAndLogin input");
-        }
-        if (e.target.className == "Btn") {
-            var searchKey = document.querySelector("#Place input");
-        }
-        localStorage.setItem("searchPlace", searchKey.value);
-        window.open('../page/ket-qua-tim-kiem.html')
-    }
 
     window.findFlight = function FindFlight() {
         localStorage.setItem("location_from",document.getElementById('f_location_from').value)
@@ -320,7 +321,7 @@ if (document.URL.includes('ket-qua-tim-kiem'))
             </div>
         </div>`
         document.querySelector('html').style.backgroundColor = '#D3D3D3'
-        document.title = `Kết quả tìm kiếm: ${localStorage.getItem("searchPlace")}`
+        document.title = `BackTravel - Kết quả tìm kiếm: ${localStorage.getItem("searchPlace")}`
         
         if (count > 0)
         {
@@ -1467,12 +1468,12 @@ if (document.URL.includes('xem-dia-diem'))
         num_reviews: "",
         address: ""
     }
-    document.title = `Xem địa điểm`
+    document.title = `BackTravel - Xem địa điểm`
     fetch(`https://travel-advisor.p.rapidapi.com/attractions/get-details?location_id=${place.location_id}&currency=VND&lang=vi`, options)
     .then(response => response.json())
     .then(response => {
         place.name = response.name
-        document.title = `Xem địa điểm: ${place.name}`
+        document.title = `BackTravel - Xem địa điểm: ${place.name}`
         if (response.rating == undefined)
             place.type = 'geos'
         if (response.rating != undefined)

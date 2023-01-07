@@ -41,7 +41,13 @@
         </nav>
         <div class="searchAndLogin">
             <div class="search">
-                <input type="search" class="search-bar" placeholder="Tìm kiếm địa điểm">
+                <input type="search" class="search-bar" placeholder="Tìm kiếm địa điểm" onkeypress="{
+                    if (event.key === 'Enter')
+                    {
+                        event.preventDefault();
+                        document.querySelector('.searchAndLogin .fa-search').click();
+                    }
+                }">
                 <label for="search-bar" class="fas fa-search" onclick="Search(event)"></label>
             </div>
             <i class="fas fa-user" id="login-btn" onclick="openAccountPage()"></i>
