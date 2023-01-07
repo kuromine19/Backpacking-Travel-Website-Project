@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://kit.fontawesome.com/935bb17bc3.js" crossorigin="anonymous"></script>
+    
+    
+    <link rel="stylesheet" href="https://www.fontspace.com/cassandra-font-f29711">
+    <!-- Tìm icon: https://fontawesome.com/icons/cloudflare?s=solid&f=brands -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    
+
+    <link rel="stylesheet" href="./style/style.css">
+    <title>BACKPACKING TRAVEL WEBSITE</title>
+</head>
+<body>
+    
+    <header>
+
+        <a  href="./index.html" id="logo">BackTravel</a>
+
+        <nav id="navbar">
+            <a href="./index.html" class="navHome">
+                Home
+            </a>
+            <a href="./page/book_flights_index.html" class="navBook">
+                Book
+            </a>
+            <a href="#" class="navBlog" onclick="unavailableFeature()">
+                Blog
+            </a>
+
+        </nav>
+        <div class="searchAndLogin">
+            <div class="search">
+                <input type="search" class="search-bar" placeholder="Tìm kiếm địa điểm" onkeypress="{
+                    if (event.key === 'Enter')
+                    {
+                        event.preventDefault();
+                        document.querySelector('.searchAndLogin .fa-search').click();
+                    }
+                }">
+                <label for="search-bar" class="fas fa-search" onclick="Search(event)"></label>
+            </div>
+            <i class="fas fa-user" id="login-btn" onclick="openAccountPage()"></i>
+        </div>
+    </header>
+    <div id="home">
+        <div id="slider">
+            <div class="slide active">
+                <img src="./assets/images/slide1.jpeg" alt="">
+                <div class="info">
+                    <p>Hành trình vạn dặm bắt đầu từ một bước chân</p>
+                    <h2>Lão Tử</h2>
+    
+                </div>
+            </div>
+            <div class="slide">
+                <img src="./assets/images/slide2.jpg" alt="">
+                <div class="info">
+                    <p>Du lịch chính là được sống</p>
+                    <h2>Hans Christian Andersen</h2>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="./assets/images/slide3.jpg" alt="">
+                <div class="info">
+                    <p>Khách du lịch không biết nơi nào họ từng đến, kẻ lữ hành không biết nơi nào họ sắp đến</p>
+                    <h2>Paul Theroux</h2>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="./assets/images/slide4.jpg" alt="">
+                <div class="info">
+                    <p>Chỉ có người lang thang mới tìm ra những con đường mới</p>
+                    <h2>Tục ngữ Na Uy</h2>
+                </div>
+            </div>
+            <div class="slide">
+                <img src="./assets/images/slide5.jpg" alt="">
+                <div class="info">
+                    <p>Đi càng xa, tôi càng tiến gần đến bản thân mình</p>
+                    <h2>Andrew McCarthy</h2>
+                </div>
+            </div>
+            <div class="navSlider">
+                <i class="fas fa-chevron-left prev-btn"></i>
+                <i class="fas fa-chevron-right next-btn"></i>
+            </div>
+            <div class="navigation-visibility">
+                <div class="slide-icon active"></div>
+                <div class="slide-icon"></div>
+                <div class="slide-icon"></div>
+                <div class="slide-icon"></div>
+                <div class="slide-icon"></div>
+            </div>
+        </div>
+    
+        <div id="tabs">
+            <!-- Tab links -->
+            <div class="tab">
+                <button class="tablinks tabActive" onclick="openTab(event, 'Place')">Địa điểm</button>
+                <button class="tablinks" onclick="openTab(event, 'Flight')">Vé máy bay</button>
+                <button class="tablinks" onclick="openTab(event, 'Hotel')">Phòng khách sạn</button>
+                <button class="tablinks" onclick="openTab(event, 'Tour')">Tour</button>
+            </div>
+            
+            <!-- Tab content -->
+            <div id="Place" class="tabcontent tabActive">
+                <input type="search" class="search-bar" placeholder="Tìm kiếm địa điểm" onkeypress="{
+                    if (event.key === 'Enter')
+                    {
+                        event.preventDefault();
+                        document.querySelector('#Place .Btn').click();
+                    }
+                }">
+                <button class="Btn" onclick="Search(event)">Tìm kiếm</button>
+            </div>
+            
+            <div id="Flight" class="tabcontent">
+    
+                <div class="row">
+                    <div class="colume">
+                        <h5> Từ </h5>
+                        <input id="f_location_from" type="text" placeholder="Từ">
+                    </div>
+                        
+                    <div class="colume">
+                        <h5> Đến </h5>
+                        <input id="f_location_to" type="text" placeholder="Đến">
+                    </div>
+                        
+    
+                </div>
+                <div class="row">
+                    <div class="colume">
+                        <h5> Ngày đi</h5>
+                        <input id="f_date_from" class="glyphicon glyphicon-calendar" type="date" placeholder="mm/dd/yyyy">
+                    </div>
+                    
+                    <div class="colume">
+                        <h5> Ngày về </h5>
+                        <input id="f_date_to" class="glyphicon glyphicon-calendar" type="date" placeholder="mm/dd/yyyy">
+                    </div>
+    
+                </div>
+                <div class="row findBtn">
+                    <button type="button" class="Btn" onclick="findFlight()">Tìm kiếm </button>
+                </div>
+                
+                
+            </div>
+            
+            <div id="Hotel" class="tabcontent">
+                
+                <div class="row">
+                    <div class="colume">
+                        <h5> Điểm đến </h5>
+                        <input type="text" placeholder="Bạn muốn đến đâu?">
+                    </div>
+                        
+    
+                </div>
+                <div class="row">
+                    <div class="colume">
+                        <h5> Nhận phòng</h5>
+                        <input class="glyphicon glyphicon-calendar" type="date" placeholder="mm/dd/yyyy">
+                    </div>
+                    
+                    <div class="colume">
+                        <h5> Trả phòng </h5>
+                        <input class="glyphicon glyphicon-calendar" type="date" placeholder="mm/dd/yyyy">
+                    </div>
+    
+                </div>
+                <div class="row">
+                    <div class="colume">
+                        <h5> Số phòng </h5>
+                        <input type="number" name="points" min="0" max="100" step="10" value="1">
+                    </div>
+    
+                    <div class="colume">
+                        <h5> Số người lớn </h5>
+                        <input type="number" name="points" min="0" max="100" step="10" value="1">
+                    </div>
+                    
+                    <div class="colume">
+                        <h5> Số trẻ em </h5>
+                        <input type="number" name="points" min="0" max="100" step="10" value="0">
+                    </div>
+                </div>
+                <div class="row findBtn">
+                    <button type="button" class="Btn" onclick="unavailableFeature()">Tìm kiếm </button>
+                </div>
+    
+            </div>
+    
+            <div id="Tour" class="tabcontent">
+                <div class="row">
+                    <div class="colume">
+                        <h5> Điểm đi </h5>
+                        <input type="text" placeholder="Nơi khởi hành">
+                    </div>
+                        
+                    <div class="colume">
+                        <h5> Điểm đến </h5>
+                        <input type="text" placeholder="Hãy chọn điểm đến">
+                    </div>
+                        
+    
+                </div>
+                <div class="row">
+                    <div class="colume">
+                        <h5> Ngày đi</h5>
+                        <input class="glyphicon glyphicon-calendar" type="date" placeholder="mm/dd/yyyy">
+                    </div>
+                    
+                    <div class="colume">
+                        <label for="soNgay">Số ngày</label>
+                        <br>
+                        <select class="form-control" id="soNgay">
+                            <option>1-3 ngày</option>
+                            <option>4-7 ngày</option>
+                            <option>8-14 ngày</option>
+                            <option>Trên 14 ngày</option>
+                        </select>
+                    </div>
+    
+                </div>
+                <div class="row findBtn">
+                    <button type="button" class="Btn" onclick="unavailableFeature()">Tìm kiếm </button>
+                </div>
+            </div>
+        </div>
+    
+    
+        <div id="famousPlace">
+            <h1 class="heading">
+                <span>Địa</span>
+                <span>điểm</span>
+                <span>nổi</span>
+                <span>tiếng</span>
+            </h1>
+        
+            <div class="box-container">
+        
+                <div class="box">
+                    <img src="./assets/images/famousPlace1.jpg" alt="">
+                    <div class="content">
+                        <h3>Phú Quốc</h3>
+                        <p>Du lịch Phú Quốc nổi tiếng với những bãi biển đẹp, hoang sơ như Bãi Sao, Bãi Dài, Gành Dầu,... cùng nhiều điểm vui chơi hấp dẫn như VinWonders Phú Quốc, Vinpearl Safari, cùng các địa điểm du lịch Phú Quốc nổi tiếng như vườn tiêu, chợ đêm, Dinh Cậu, suối Tranh,...</p>
+                        <a class="Btn" onclick="showInfoPlace(469418)">Xem thêm</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="./assets/images/famousPlace2.jpg" alt="">
+                    <div class="content">
+                        <h3>Nha Trang</h3>
+                        <p>Thành phố biển miền Trung không chỉ đi vào thơ, hoạ mà còn “được lòng” du khách với những gì đẹp nhất của một vùng duyên hải. Nha Trang, hòn ngọc quý của tỉnh Khánh Hòa luôn là một điểm sáng trên bản đồ du lịch Việt, thu hút đông đảo du khách trong nước và quốc tế...</p>
+                        <a class="Btn" onclick="showInfoPlace(293928)">Xem thêm</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="./assets/images/famousPlace3.jpg" alt="">
+                    <div class="content">
+                        <h3>Đà Nẵng</h3>
+                        <p>Đây là thành phố của nhiều cây cầu đẹp như cầu sông Hàn, cầu Rồng, cầu Thuận Phước, cầu tình yêu; những bãi biển hoang sơ, thơ mộng như biển Mỹ Khê, biển Non Nước, biển Xuân Thiều,... cùng nhiều thắng cảnh đẹp khác như núi Ngũ Hành Sơn, bán đảo Sơn Trà, Ghềnh Bàng,...</p>
+                        <a class="Btn" onclick="showInfoPlace(298085)">Xem thêm</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="./assets/images/famousPlace4.jpg" alt="">
+                    <div class="content">
+                        <h3>Hạ Long Quảng Ninh</h3>
+                        <p>Du lịch Hạ Long - 1 trong 7 kỳ quan thiên nhiên thế giới, du khách sẽ được khám phá nhiều hang động độc đáo, các hòn đảo tuyệt đẹp như đảo Mắt Rồng, Ngọc Vừng, hòn Con Cóc,... </p>
+                        <a class="Btn" onclick="showInfoPlace(293923)">Xem thêm</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="./assets/images/famousPlace5.jpg" alt="">
+                    <div class="content">
+                        <h3>Cần Thơ</h3>
+                        <p>Cần Thơ là một trong những điểm du lịch miền Tây Nam Bộ hấp dẫn hàng đầu. Các địa điểm du lịch Cần Thơ nổi tiếng phải kể đến như  bến Ninh Kiều, chợ Đêm, đảo ngọt Cù Lao, nhà cổ Bình Thủy,...</p>
+                        <a class="Btn" onclick="showInfoPlace(303942)">Xem thêm</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="./assets/images/famousPlace6.jpg" alt="">
+                    <div class="content">
+                        <h3>Hà Nội</h3>
+                        <p>Thủ đô Hà Nội ngàn năm văn hiến là một trong những nơi mà bất kỳ người Việt Nam nào cũng muốn được đặt chân đến một lần trong đời. Du lịch Thủ đô, du khách sẽ được ghé thăm những điểm tham quan nổi tiếng như Quảng trường Ba Đình, Văn Miếu Quốc Tử Giám, chùa Trấn Quốc,... hay chiêm ngưỡng cảnh đẹp Hồ Tây, Hồ Gươm, Hoàng thành Thăng Long,...</p>
+                        <a class="Btn" onclick="showInfoPlace(293924)">Xem thêm</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="./assets/images/famousPlace7.jpeg" alt="">
+                    <div class="content">
+                        <h3>Đà Lạt</h3>
+                        <p>Với cảnh đẹp thơ mộng, khí hậu mát mẻ cùng nhiều món ăn ngon, Đà Lạt là điểm đến hút du khách đầu nước ta. Vẻ đẹp lãng mạn của Đà Lạt khiến bao người mê đắm. Đến đây, đừng quên check in các điểm tham quan nổi bật như núi Langbiang Đà Lạt, hồ Xuân Hương, hồ Tuyền Lâm, đồn điền cà phê Mê Linh,...</p>
+                        <a class="Btn" onclick="showInfoPlace(293922)">Xem thêm</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="./assets/images/famousPlace8.jpg" alt="">
+                    <div class="content">
+                        <h3>Hà Giang</h3>
+                        <p>Hà Giang thu hút du khách bởi vẻ đẹp thiên nhiên hoang sơ, bình dị, yên bình. Các điểm du lịch nổi tiếng mà bạn nhất định phải ghé khi đến Hà Giang là Hoàng Su Phì, đèo Mã Pí Lèng, cao nguyên đá Đồng Văn, Phó Bảng, cột cờ Lũng Cú, động Lùng Khúy, cửa khẩu Săm Pun, hồ Noong, thung lũng Sủng Là, phố cổ Đồng Văn,...</p>
+                        <a class="Btn" onclick="showInfoPlace(1544599)">Xem thêm</a>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="./assets/images/famousPlace9.jpg" alt="">
+                    <div class="content">
+                        <h3>Sapa</h3>
+                        <p>Vùng núi Tây Bắc Việt Nam nổi tiếng với núi non hùng vĩ, cảnh đẹp nên thơ. Sapa - một trong những điểm du lịch hấp dẫn của Tây Bắc, níu chân du khách bởi vẻ đẹp lãng mạn của bản Cầu Mây, Cát Cát; những thửa ruộng bậc thang uốn lượn; những ngọn núi chạm mây như đỉnh Fansipan, núi Hàm Rồng; nét văn hóa độc đáo của người Tây Bắc...</p>
+                        <a class="Btn" onclick="showInfoPlace(311304)">Xem thêm</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="box-container">
+
+            <div class="box" style="padding-left: 15rem;">
+                <h3>About Us</h3>
+                <p style="font-style: italic;">Nhóm 25 Nhập môn công nghệ phần mềm<br>Khoa Công nghệ thông tin<br>Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM</p>
+            </div>
+            <div class="box" style="padding-left: 15rem;">
+                <h3>Follow Us</h3>
+                <a href="https://github.com/kuromine19/Backpacking-Travel-Website-Project"><i class="fa-brands fa-github"></i>Github</a>
+                <a href="https://www.facebook.com/profile.php?id=100089216589057"><i class="fa-brands fa-facebook"></i>Facebook</a>
+            </div>
+    
+        </div>
+    
+        <h1 class="credit"> Created by <span> Team25_FIT@HCMUS </span> | All Rights Reserved! </h1>
+    </footer>
+    
+    <script type="module" src="./firebaseConfig.js"></script>
+    <script type="module" src="./script/script.js"></script>
+    <script>
+        // Slider
+        const slider = document.querySelector("#slider");
+        const nextBtn = document.querySelector(".next-btn");
+        const prevBtn = document.querySelector(".prev-btn");
+        const slides = document.querySelectorAll(".slide");
+        const slideIcons = document.querySelectorAll(".slide-icon");
+        const numberOfSlides = slides.length;
+        var slideNumber = 0;
+
+
+        //image slider next button
+        nextBtn.addEventListener("click", () => {
+            slides.forEach((slide) => {
+            slide.classList.remove("active");
+            });
+            slideIcons.forEach((slideIcon) => {
+            slideIcon.classList.remove("active");
+            });
+
+            slideNumber++;
+
+            if(slideNumber > (numberOfSlides - 1)){
+            slideNumber = 0;
+            }
+
+            slides[slideNumber].classList.add("active");
+            slideIcons[slideNumber].classList.add("active");
+        });
+
+        //image slider previous button
+        prevBtn.addEventListener("click", () => {
+            slides.forEach((slide) => {
+            slide.classList.remove("active");
+            });
+            slideIcons.forEach((slideIcon) => {
+            slideIcon.classList.remove("active");
+            });
+
+            slideNumber--;
+
+            if(slideNumber < 0){
+            slideNumber = numberOfSlides - 1;
+            }
+
+            slides[slideNumber].classList.add("active");
+            slideIcons[slideNumber].classList.add("active");
+        });
+
+        //image slider autoplay
+        var playSlider;
+
+        var repeater = () => {
+            playSlider = setInterval(function(){
+            slides.forEach((slide) => {
+                slide.classList.remove("active");
+            });
+            slideIcons.forEach((slideIcon) => {
+                slideIcon.classList.remove("active");
+            });
+
+            slideNumber++;
+
+            if(slideNumber > (numberOfSlides - 1)){
+                slideNumber = 0;
+            }
+
+            slides[slideNumber].classList.add("active");
+            slideIcons[slideNumber].classList.add("active");
+            }, 2000);
+        }
+        repeater();
+
+        //stop the image slider autoplay on mouseover
+        slider.addEventListener("mouseover", () => {
+            clearInterval(playSlider);
+        });
+
+        //start the image slider autoplay again on mouseout
+        slider.addEventListener("mouseout", () => {
+            repeater();
+        });
+
+        // Tabs
+
+
+        window.openTab = function openTab(evt, cityName) {
+            var tabActive = document.querySelector(".tablinks.tabActive");
+            var tabActiveContent = document.querySelector(".tabcontent.tabActive");
+            tabActive.classList.remove("tabActive");
+            tabActiveContent.classList.remove("tabActive");
+            document.getElementById(cityName).classList.add("tabActive");
+            evt.currentTarget.classList.add("tabActive");
+        }
+
+
+
+        window.Search = function Search(e) {
+            
+            if (e.target.className == "fas fa-search") {
+                var searchKey = document.querySelector(".searchAndLogin input");
+            }
+            if (e.target.className == "Btn") {
+                var searchKey = document.querySelector("#Place input");
+            }
+            localStorage.setItem("searchPlace", searchKey.value);
+            window.open('../page/ket-qua-tim-kiem.html')
+        }
+
+        window.findFlight = function FindFlight() {
+            localStorage.setItem("location_from",document.getElementById('f_location_from').value)
+            localStorage.setItem("location_to",document.getElementById('f_location_to').value)
+            localStorage.setItem("date_from",document.getElementById('f_date_from').value)
+            localStorage.setItem("date_to",document.getElementById('f_date_to').value)
+            window.open('../page/book_flights_index.html')
+        }
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
+    <script src="https://kit.fontawesome.com/935bb17bc3.js" crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" href="https://www.fontspace.com/cassandra-font-f29711">
+    <!-- Tìm icon: https://fontawesome.com/icons/cloudflare?s=solid&f=brands -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+
+    <link rel="stylesheet" href="../style/style.css">
+    <title>BACKPACKING TRAVEL WEBSITE</title>
+</head>
+<body>
+    <header>
+
+        <a  href="../index.html" id="logo">BackTravel</a>
+
+        <nav id="navbar">
+            <a href="../index.html" class="navHome">
+                Home
+            </a>
+            <a href="./book_flights_index.html" class="navBook">
+                Book
+            </a>
+            <a href="/blog.html" class="navBlog" onclick="unavailableFeature()">
+                Blog
+            </a>
+
+        </nav>
+        <div class="searchAndLogin">
+            <div class="search">
+                <input type="search" class="search-bar" placeholder="Tìm kiếm địa điểm" onkeypress="{
+                    if (event.key === 'Enter')
+                    {
+                        event.preventDefault();
+                        document.querySelector('.searchAndLogin .fa-search').click();
+                    }
+                }">
+                <label for="search-bar" class="fas fa-search" onclick="Search(event)"></label>
+            </div>
+            <i class="fas fa-user" id="login-btn" onclick="openAccountPage()"></i>
+        </div>
+    </header>
+    <div class="container">
+        <div class="searchPlace">
+            <input type="search" class="search-bar" placeholder="Tìm kiếm địa điểm">
+            <button class="Btn" onclick="Search(event)">Tìm kiếm</button>
+        </div>
+        <div class="searchResult">
+            
+        </div>
+    </div>
+    <footer>
+        <div class="box-container">
+
+            <div class="box" style="padding-left: 15rem;">
+                <h3>About Us</h3>
+                <p style="font-style: italic;">Nhóm 25 Nhập môn công nghệ phần mềm<br>Khoa Công nghệ thông tin<br>Trường Đại học Khoa học Tự nhiên, ĐHQG-HCM</p>
+            </div>
+            <div class="box" style="padding-left: 15rem;">
+                <h3>Follow Us</h3>
+                <a href="https://github.com/kuromine19/Backpacking-Travel-Website-Project"><i class="fa-brands fa-github"></i>Github</a>
+                <a href="https://www.facebook.com/profile.php?id=100089216589057"><i class="fa-brands fa-facebook"></i>Facebook</a>
+            </div>
+    
+        </div>
+    
+        <h1 class="credit"> Created by <span> Team25_FIT@HCMUS </span> | All Rights Reserved! </h1>
+    </footer>
+    
+    <script type="module" src="../firebaseConfig.js"></script>
+    <script type="module" src="../script/script.js"></script>
+</body>
+</html>
