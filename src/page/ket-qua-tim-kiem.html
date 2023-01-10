@@ -55,7 +55,13 @@
     </header>
     <div class="container">
         <div class="searchPlace">
-            <input type="search" class="search-bar" placeholder="Tìm kiếm địa điểm">
+            <input type="search" class="search-bar" placeholder="Tìm kiếm địa điểm" onkeypress="{
+                if (event.key === 'Enter')
+                {
+                    event.preventDefault();
+                    document.querySelector('.searchPlace .Btn').click();
+                }
+            }">
             <button class="Btn" onclick="Search(event)">Tìm kiếm</button>
         </div>
         <div class="searchResult">

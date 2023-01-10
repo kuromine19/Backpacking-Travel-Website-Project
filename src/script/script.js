@@ -5,7 +5,7 @@ import { db } from '../firebaseConfig.js'
 const options = {
 	method: 'GET',
 	headers: {
-		'X-RapidAPI-Key': '7eb597ab48mshbc1ea92466277a5p13e795jsn964983eb7b12',
+		'X-RapidAPI-Key': '3727732756msh6a996508e8f4911p1ca359jsnbfcf7cc4e6d2',
 		'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
 	}
 };
@@ -421,7 +421,10 @@ if (document.URL.includes('ket-qua-tim-kiem'))
                         }
                         count += 1
                     })
-                    .catch(err => console.error(err))
+                    .catch(err => {
+                        console.error(err)
+                        window.alert('Đã xảy ra lỗi (có thể API hết hạn ngạch)')
+                    })
                 } 
             }
             
@@ -538,7 +541,10 @@ if (document.URL.includes('ket-qua-tim-kiem'))
                     }
                     
                 })
-                .catch(err => console.error(err))  
+                .catch(err => {
+                    console.error(err)
+                    window.alert('Đã xảy ra lỗi (có thể API hết hạn ngạch)')
+                })  
             }
         
         }
@@ -1138,7 +1144,10 @@ if (document.URL.includes('xem-dia-diem'))
                     renderImg(response)
                 }
             })
-            .catch(err => console.error(err));
+            .catch(err => {
+                console.error(err)
+                window.alert('Đã xảy ra lỗi (có thể API hết hạn ngạch)')
+            });
         }
         
         //Phần giới thiệu của địa điểm
@@ -1223,7 +1232,10 @@ if (document.URL.includes('xem-dia-diem'))
                         if (response.data != undefined)
                             renderNearPlace(response)
                     })
-                    .catch(err => console.error(err));
+                    .catch(err => {
+                        console.error(err)
+                        window.alert('Đã xảy ra lỗi (có thể API hết hạn ngạch)')
+                    });
                 }
                     
             }
@@ -1394,7 +1406,10 @@ if (document.URL.includes('xem-dia-diem'))
                             if (response.data != undefined)
                                 renderReviews(response)
                         })
-                        .catch(err => console.error(err));
+                        .catch(err => {
+                            console.error(err)
+                            window.alert('Đã xảy ra lỗi (có thể API hết hạn ngạch)')
+                        });
                         
 
 
@@ -1449,7 +1464,10 @@ if (document.URL.includes('xem-dia-diem'))
                         if (response.data != undefined)
                             renderReviews(response)
                     })
-                    .catch(err => console.error(err));
+                    .catch(err => {
+                        console.error(err)
+                        window.alert('Đã xảy ra lỗi (có thể API hết hạn ngạch)')
+                    });
                 }
                 
 
@@ -1501,13 +1519,15 @@ if (document.URL.includes('xem-dia-diem'))
             renderInfoPlace(place)
         }
     })
-    .catch(err => console.error(err));
+    .catch(err => {
+        console.error(err)
+        window.alert('Đã xảy ra lỗi (có thể API hết hạn ngạch)')
+    });
     
     
     
     
 }
-
 
 
 
